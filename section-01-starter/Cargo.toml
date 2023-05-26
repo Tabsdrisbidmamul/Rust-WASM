@@ -1,0 +1,10 @@
+[package]
+name = "section-01-game"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+[[bin]]
+name = "section-01-game"
+path= "src/main.rs"
