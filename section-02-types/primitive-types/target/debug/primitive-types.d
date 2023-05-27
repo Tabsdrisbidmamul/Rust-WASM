@@ -1,0 +1,1 @@
+C:\Users\ricep\OneDrive\Documents\projects\Rust\section-02-types\primitive-types\target\debug\primitive-types.exe: C:\Users\ricep\OneDrive\Documents\projects\Rust\section-02-types\primitive-types\src\main.rs
