@@ -1,0 +1,1 @@
+C:\Users\ricep\OneDrive\Documents\projects\Rust\section-03-move-and-copy\moved-value-int\target\debug\moved-value-int.exe: C:\Users\ricep\OneDrive\Documents\projects\Rust\section-03-move-and-copy\moved-value-int\src\main.rs
