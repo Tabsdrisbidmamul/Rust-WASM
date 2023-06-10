@@ -1,0 +1,1 @@
+C:\Users\ricep\OneDrive\Documents\projects\Rust\section-04-reference-borrowing\references\target\debug\references.exe: C:\Users\ricep\OneDrive\Documents\projects\Rust\section-04-reference-borrowing\references\src\main.rs
