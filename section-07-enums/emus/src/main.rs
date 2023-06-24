@@ -1,16 +1,33 @@
 fn main() {
-    let person = Person::from("Idris", "Khan", 23, PersonIdentity::Passport);
+    let person = Person::from(
+        "Idris",
+        "Khan",
+        23,
+        PersonIdentity::Passport("123456".to_string()),
+    );
 
-    println!(
-        "{} {} {} {:?}",
-        person.first_name, person.last_name, person.age, person.id
-    )
+    let person_2 = Person::from(
+        "Test",
+        "test last name",
+        0,
+        PersonIdentity::IdentityCard("123456".to_string()),
+    );
+
+    let animal = Animal("Dog".to_string(), 10, "Bulldog".to_string());
+
+    animal.display_info();
+
+    person.display_info();
+
+    let is_id_match = person.check_person_id(&person_2);
+
+    println!("main(): is_id_match {}", is_id_match)
 }
 
-#[derive(Debug)]
+#[derive(Eq, PartialEq)]
 enum PersonIdentity {
-    Passport,
-    IdentityCard,
+    Passport(String),
+    IdentityCard(String),
 }
 
 struct Person {
@@ -20,16 +37,15 @@ struct Person {
     id: PersonIdentity,
 }
 
-impl Person {
-    fn new() -> Person {
-        return Person {
-            first_name: "Default".to_string(),
-            last_name: "Default".to_string(),
-            age: 0,
-            id: PersonIdentity::Passport,
-        };
-    }
+struct Animal(String, u32, String);
 
+impl Animal {
+    fn display_info(&self) {
+        println!("{} {} {}", self.0, self.1, self.2)
+    }
+}
+
+impl Person {
     fn from(first_name: &str, last_name: &str, age: u32, id: PersonIdentity) -> Person {
         return Person {
             first_name: first_name.to_string(),
@@ -39,19 +55,37 @@ impl Person {
         };
     }
 
-    fn some_fn() {
-        println!("some_fn()")
+    fn get_identity_value(&self) -> &String {
+        let value = match &self.id {
+            PersonIdentity::IdentityCard(s) => s,
+            PersonIdentity::Passport(s) => s,
+        };
+
+        return value;
     }
 
-    fn change_age(&mut self, new_age: u32) {
-        self.age = new_age;
+    fn display_info(&self) {
+        println!(
+            "{} {} {} {}",
+            self.first_name,
+            self.last_name,
+            self.age,
+            self.get_identity_value()
+        )
     }
 
-    fn change_first_name(&mut self, new_first_name: &str) {
-        self.first_name = new_first_name.to_string();
-    }
+    fn check_person_id(&self, to_match: &Person) -> bool {
+        let self_id = self.get_identity_value();
+        let to_match_id = to_match.get_identity_value();
 
-    fn change_last_name(&mut self, new_last_name: &str) {
-        self.last_name = new_last_name.to_string();
+        let is_id_type_match = self.id == to_match.id;
+
+        let is_id_match = self_id == to_match_id;
+
+        println!("check_person_id(): is_id_type_match {}", is_id_type_match);
+
+        println!("check_person_id(): is_id_match {}", is_id_match);
+
+        return is_id_match && is_id_type_match;
     }
 }
