@@ -25,6 +25,17 @@ fn main() {
 
     person.alert();
     animal.alert();
+
+    log_info_dyn(&person);
+    log_info(person);
+}
+
+fn log_info(value: impl Log) {
+    value.alert();
+}
+
+fn log_info_dyn(value: &dyn Log) {
+    value.alert()
 }
 
 trait Log {
